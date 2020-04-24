@@ -5,43 +5,43 @@
   assert:
     that: ("{{ item }} is defined") and ("{{ item }} | length > 0")
   loop:
-    - api_version
-    - controller.fqdn
-    - controller.auth_token
-    - environmentName
-    - app.metadata.name
+    - nginx_controller_api_version
+    - nginx_controller_fqdn
+    - nginx_controller_auth_token
+    - nginx_controller_environmentName
+    - nginx_controller_app.metadata.name
 
 - name: Form the component url
   set_fact:
-    app_url: >-
-      https://{{ controller.fqdn }}/{{ api_version }}/services/environments/{{ environmentName }}/apps/{{ app.metadata.name }}
+    nginx_controller_app_url: >-
+      https://{{ nginx_controller_fqdn }}/{{ nginx_controller_api_version }}/services/environments/{{ nginx_controller_environmentName }}/apps/{{ nginx_controller_app.metadata.name }}
 
 - name: Test for application
   uri:
-    url: "{{ app_url }}"
+    url: "{{ nginx_controller_app_url }}"
     method: "GET"
     status_code:
       - 200
       - 201
       - 404
     return_content: yes
-    validate_certs: "{{ controller.validate_certs | default(false) }}"
+    validate_certs: "{{ nginx_controller_validate_certs | default(false) }}"
     headers:
-      Cookie: "{{ controller.auth_token }}"
-  register: app_status
+      Cookie: "{{ nginx_controller_auth_token }}"
+  register: nginx_controller_app_status
 
 - name: create if app is absent
   uri:
-    url: "{{ app_url }}"
+    url: "{{ nginx_controller_app_url }}"
     method: "PUT"
-    body: "{{ app }}"
+    body: "{{ nginx_controller_app }}"
     body_format: json
     status_code:
       - 200
       - 201
       - 202
     return_content: yes
-    validate_certs: "{{ controller.validate_certs | default(false) }}"
+    validate_certs: "{{ nginx_controller_validate_certs | default(false) }}"
     headers:
-      Cookie: "{{ controller.auth_token }}"
-  when: app_status.status == 404
+      Cookie: "{{ nginx_controller_auth_token }}"
+  when: nginx_controller_app_status.status == 404

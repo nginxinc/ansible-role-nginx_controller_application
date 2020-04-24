@@ -38,11 +38,10 @@ To use this role you can create a playbook such as the following (let's name it 
   gather_facts: no
 
   vars:
-    controller:
-      user_email: "user@example.com"
-      user_password: "mySecurePassword"
-      fqdn: "controller.mydomain.com"
-      validate_certs: false
+    nginx_controller_user_email: "user@example.com"
+    nginx_controller_user_password: "mySecurePassword"
+    nginx_controller_fqdn: "controller.mydomain.com"
+    nginx_controller_validate_certs: false
 
   tasks:
     - name: Retrieve the NGINX Controller auth token
@@ -53,8 +52,8 @@ To use this role you can create a playbook such as the following (let's name it 
       include_role:
         name: nginxinc.nginx_controller_application
       vars:
-        environmentName: "production-us-west"
-        app:
+        nginx_controller_environmentName: "production-us-west"
+        nginx_controller_app:
           metadata:
             name: "trading.acmefinancial.net"
             displayName: "Trading.ACMEFinancial.net"
