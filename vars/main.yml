@@ -1,0 +1,8 @@
+---
+# vars file for ansible-role-nginx_controller_application
+
+# app:
+#   metadata:
+#     name:  # the short name of the application (alpha numeric characters only)
+#     displayName:   # a friendly display name for the application (spaces and special characters allowed)
+#     description:  # a description of the application

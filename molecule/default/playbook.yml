@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+
+  vars:
+    # controller:
+    #   user_email: "user@example.com"
+    #   user_password: "mySecurePassword"
+    #   fqdn: "controller.mydomain.com"
+    #   validate_certs: false
+    #
+    # environmentName: ""
+    # app:
+    #   metadata:
+    #     name: "trading.acmefinancial.net"
+    #     displayName: "Trading.ACMEFinancial.net"
+    #     description: "Core Trading Application"
+
+  tasks:
+    - include_role:
+        name: ansible-role-nginx_controller_application

@@ -1,0 +1,10 @@
+---
+# defaults file for ansible-role-nginx_controller_application
+
+api_version: "api/v1"
+
+## The following defaults exist to ensure no breakage of existing implementations that utilize this role. Do not remove.
+controller:
+  user_email: "{{ user_email }}"
+  user_password: "{{ user_password }}"
+  fqdn: "{{ controller_fqdn }}"
