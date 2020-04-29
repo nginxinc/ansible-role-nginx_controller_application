@@ -62,7 +62,7 @@ To use this role you can create a playbook such as the following (let's name it 
 
 You can then run `ansible-playbook nginx_controller_application.yaml` to execute the playbook.
 
-Alternatively, you can also pass/override any variables at run time using the `--extra-vars` or `-e` flag like so `ansible-playbook nginx_controller_application.yaml -e '{"controller":{ "user_email":"user@company.com","user_password":"notsecure", "fqdn": "controller.example.local", "validate_certs":false }}'`
+Alternatively, you can also pass/override any variables at run time using the `--extra-vars` or `-e` flag like so `ansible-playbook nginx_controller_application.yaml -e "nginx_controller_user_email=user@company.com nginx_controller_user_password=notsecure nginx_controller_fqdn=controller.example.local nginx_controller_validate_certs=false"`
 
 You can also pass/override any variables by passing a `yaml` file containing any number of variables like so `ansible-playbook nginx_controller_application.yaml -e "@nginx_controller_application_vars.yaml"`
 

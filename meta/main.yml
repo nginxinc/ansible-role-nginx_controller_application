@@ -3,6 +3,7 @@ galaxy_info:
   description: A role to define applications (apps) with NGINX Controller.
   company: F5 Networks, Inc.
   role_name: nginx_controller_application
+
   license: Apache License, Version 2.0
 
   min_ansible_version: 2.7
