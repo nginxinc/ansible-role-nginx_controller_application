@@ -16,21 +16,7 @@
     nginx_controller_app_url: >-
       https://{{ nginx_controller_fqdn }}/{{ nginx_controller_api_version }}/services/environments/{{ nginx_controller_environmentName }}/apps/{{ nginx_controller_app.metadata.name }}
 
-- name: Test for application
-  uri:
-    url: "{{ nginx_controller_app_url }}"
-    method: "GET"
-    status_code:
-      - 200
-      - 201
-      - 404
-    return_content: yes
-    validate_certs: "{{ nginx_controller_validate_certs | default(false) }}"
-    headers:
-      Cookie: "{{ nginx_controller_auth_token }}"
-  register: nginx_controller_app_status
-
-- name: create if app is absent
+- name: create if app is absent, update if present
   uri:
     url: "{{ nginx_controller_app_url }}"
     method: "PUT"
@@ -44,4 +30,16 @@
     validate_certs: "{{ nginx_controller_validate_certs | default(false) }}"
     headers:
       Cookie: "{{ nginx_controller_auth_token }}"
-  when: nginx_controller_app_status.status == 404
+  register: nginx_controller_application_current_status
+  until: (nginx_controller_application_current_status is defined) and
+         (not nginx_controller_application_current_status.json.currentStatus.state.selfConfigState.isConfiguring | bool)
+  retries: 50
+  delay: 2
+  failed_when: nginx_controller_application_current_status.json.currentStatus.state.selfConfigState.isError | bool
+  ignore_errors: true
+
+ # above simply errors but does not include the informative failure messages from Controller 
+- name: report failure details from Controller
+  fail:
+    msg: "{{ nginx_controller_application_current_status.json.currentStatus.state.conditions }}"
+  when: nginx_controller_application_current_status.json.currentStatus.state.selfConfigState.isError | bool
