@@ -88,12 +88,12 @@ template: |
 
   ## Install & Upgrade
 
-  *   To install the Ansible NGINX Controller Application role on a fresh environment, run `ansible-galaxy install nginxinc.nginx_controller_gateway`.
-  *   To upgrade the Ansible NGINX Controller Application role to the latest release, run `ansible-galaxy install -f nginxinc.nginx_controller_gateway`.
-  *   To install or upgrade to this specific Ansible NGINX Controller Application role release ($RESOLVED_VERSION), run `ansible-galaxy install -f nginxinc.nginx_controller_gateway,v$RESOLVED_VERSION`.
+  *   To install the Ansible NGINX Controller Application role on a fresh environment, run `ansible-galaxy install nginxinc.nginx_controller_application`.
+  *   To upgrade the Ansible NGINX Controller Application role to the latest release, run `ansible-galaxy install -f nginxinc.nginx_controller_application`.
+  *   To install or upgrade to this specific Ansible NGINX Controller Application role release ($RESOLVED_VERSION), run `ansible-galaxy install -f nginxinc.nginx_controller_application,v$RESOLVED_VERSION`.
 
   ## Resources
 
   *   Functional configuration examples (check `converge.yml` under each `molecule` scenario) -- [github.com/nginxinc/ansible-role-nginx-controller_application/tree/$RESOLVED_VERSION/molecule](https://github.com/nginxinc/ansible-role-nginx-controller_application/tree/$RESOLVED_VERSION/molecule).
-  *   Ansible Galaxy repository -- [galaxy.ansible.com/nginxinc/nginx_controller_gateway](https://galaxy.ansible.com/nginxinc/nginx_controller_gateway).
+  *   Ansible Galaxy repository -- [galaxy.ansible.com/nginxinc/nginx_controller_application](https://galaxy.ansible.com/nginxinc/nginx_controller_application).
   *   NGINX: Better with Ansible demo -- [github.com/alessfg/nginx-ansible-demo](https://github.com/alessfg/nginx-ansible-demo).
