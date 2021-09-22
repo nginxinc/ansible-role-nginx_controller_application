@@ -2,4 +2,3 @@
 # defaults file for ansible-role-nginx_controller_application
 
 nginx_controller_api_version: "api/v1"
-
