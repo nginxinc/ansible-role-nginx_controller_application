@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: mock_server
+  connection: local
+  tasks:
+    - name: Check that the application request was sent to the mock controller exactly two times per docker instance (includes the idempotence test)
+      uri:
+        url: "https://{{ inventory_hostname }}:1080/mockserver/verify"
+        method: PUT
+        body:
+          httpRequest:
+            path: "/api/v1/services/environments/production/apps/www.example.com"
+          times:
+            atLeast: 2
+            atMost: 2
+        status_code: 202
+        body_format: json
+        headers:
+          Content-Type: application/json
+        validate_certs: false

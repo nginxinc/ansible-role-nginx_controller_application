@@ -1,8 +1,10 @@
+---
 galaxy_info:
   author: Brian Ehlert
   description: A role to define applications (apps) with NGINX Controller.
   company: F5 Networks, Inc.
   role_name: nginx_controller_application
+  namespace: nginxinc
 
   license: Apache License, Version 2.0
 

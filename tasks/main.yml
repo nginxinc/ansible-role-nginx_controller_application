@@ -16,7 +16,7 @@
     nginx_controller_app_url: >-
       https://{{ nginx_controller_fqdn }}/{{ nginx_controller_api_version }}/services/environments/{{ nginx_controller_environmentName }}/apps/{{ nginx_controller_app.metadata.name }}
 
-- name: create if app is absent, update if present
+- name: Create if app is absent, update if present
   uri:
     url: "{{ nginx_controller_app_url }}"
     method: "PUT"
@@ -26,7 +26,7 @@
       - 200
       - 201
       - 202
-    return_content: yes
+    return_content: true
     validate_certs: "{{ nginx_controller_validate_certs | default(false) }}"
     headers:
       Cookie: "{{ nginx_controller_auth_token }}"
@@ -38,8 +38,8 @@
   failed_when: nginx_controller_application_current_status.json.currentStatus.state.selfConfigState.isError | bool
   ignore_errors: true
 
- # above simply errors but does not include the informative failure messages from Controller 
-- name: report failure details from Controller
+ # above simply errors but does not include the informative failure messages from Controller
+- name: Report failure details from Controller
   fail:
     msg: "{{ nginx_controller_application_current_status.json.currentStatus.state.conditions }}"
   when: nginx_controller_application_current_status.json.currentStatus.state.selfConfigState.isError | bool
