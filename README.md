@@ -1,6 +1,8 @@
 NGINX Controller Application
 ==========================
 
+# This repository has been archived. There will likely be no further development on the project and security vulnerabilities may be unaddressed.
+
 Define an application with NGINX Controller to hold components that describe the behavior to the upstream workload group(s).
 
 Requirements
